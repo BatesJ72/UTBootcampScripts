@@ -36,5 +36,4 @@ def main():
     show_winner(user_choice, computer_choice)
 
 
-#run everything 
 main() 
