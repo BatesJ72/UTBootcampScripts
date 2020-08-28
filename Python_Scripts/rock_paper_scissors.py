@@ -1,31 +1,38 @@
 # Incorporate the random library
 import random
 
-# Print Title
-print("Let's Play Rock Paper Scissors!")
-
 # Specify the three options
-options = ["r", "p", "s"]
+OPTIONS = ["r", "p", "s"]
 
-# Computer Selection
-computer_choice = random.choice(options)
+def is_valid(user_choice):
+    return user_choice in OPTIONS
 
-# User Selection
-user_choice = input("Make your Choice: (r)ock, (p)aper, (s)cissors? ")
+def show_winner(user_choice, computer_choice):
+    if computer_choice == user_choice:
+        print("Tie")
+    elif (computer_choice == "r" and user_choice == 's') or (computer_choice == "s" and user_choice == 'p') or (computer_choice == "p" and user_choice == 'r'):
+        print("You Lose!")
+    else:
+        print("You Win!")
 
-# Print both selections
-print(f"You chose {user_choice} and the computer chose {computer_choice}")
-
-# Run Conditionals
-if computer_choice == user_choice:
-    print("Tie")
-elif (computer_choice == "r" or user_choice == "r") and (computer_choice == "s" or user_choice == "s"):
-    print( "Rock Wins!")
-elif (computer_choice == "p" or user_choice == "p") and (computer_choice == "r" or user_choice == "r"):
-    print( "Paper Wins!")
-elif (computer_choice == "s" or user_choice == "s") and (computer_choice == "p" or user_choice == "p"):
-    print( "Scissors Wins!")
-else: 
-    print("IDK!")
+        
+def get_input():
+    user_choice = input("Make your Choice: (r)ock, (p)aper, (s)cissors? ")
+    
+    if not is_valid(user_choice):
+        raise Exception("Invalid: enter r, p, or s!")
+    
+    return user_choice
 
 
+def main():
+    print("Let's Play Rock Paper Scissors!")
+
+    user_choice = get_input()
+    computer_choice = random.choice(OPTIONS)
+     
+    print(f"You chose {user_choice} and the computer chose {computer_choice}")
+
+    show_winner(user_choice, computer_choice)
+
+main()
