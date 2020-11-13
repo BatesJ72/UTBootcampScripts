@@ -11,4 +11,8 @@ df = pd.DataFrame(data)
 # print(df)
 
 adj = df[["id","name","temperament"]]
-print(adj)
+# print(adj)
+
+split = adj.assign(temperament=adj.temperament.str.split(',')).explode('temperament')
+
+print(split)
