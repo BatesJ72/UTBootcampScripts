@@ -21,36 +21,36 @@ column_oriented_data = {
 
 # data frame from row_oriented_data
 df1 = pandas.DataFrame(row_oriented_data)
-# print(df1)
+print(df1)
 
 # extract a column
 col_series = df1[0]
-# print(col_series)
+print(col_series)
 
 # extract a row
 row_series = df1.loc[1]
-# print(row_series)
+print(row_series)
 
 # grab an element
 element = df1.loc[0, 2]
-# print(element)
+print(element)
 
 
 # data fram from row_oriented_dict_data
 df2 = pandas.DataFrame(row_oriented_dict_data)
-# print(df2)
+print(df2)
 
 # extract a column
 col_series = df2["c2"]
-# print(col_series)
+print(col_series)
 
 # extract a row
 row_series = df2.loc[2]
-# print(row_series)
+print(row_series)
 
 # grab an element
 element = df2.loc[2, "c3"]
-# print(element)
+print(element)
 
 # grab a column with loc (or a range of rows or columns)
 col_series = df2.loc[:, "c3"]

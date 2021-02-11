@@ -6,17 +6,17 @@ r = requests.get("https://api.thedogapi.com/v1/breeds")
 # print(r.status_code)
 
 data = r.json()
-df = pd.DataFrame(data)
+df1 = pd.DataFrame(data)
 # print(df)
-adj = df[["id","name","temperament"]]
-adj["points"] = 0
+df2 = df1[["id","name","temperament"]]
+df2["points"] = 0
 # print(adj)
 
 # Explode out list of temperament adj
-split = adj.assign(temperament=adj.temperament.str.split(',')).explode('temperament')
-split = split.reset_index()
-# split = split.set_index("temperament")
-# print(split)
+df3 = df2.assign(temperament=df2.temperament.str.split(',')).explode('temperament')
+df3 = df3.reset_index()
+# df3 = df3.set_index("temperament")
+# print(df3) 
 
 
 # Create input for user
@@ -39,17 +39,18 @@ def main():
         print(adj_list)
         
         # Take user input and match it to the adj list of temperaments
-        if [split[split["temperament"] == user_choice]]:
-            split["points"] += 1
+        for t in df3["temperament"]:
+            if [df3[df3["temperament"] == user_choice]]:
+                df3["points"] += 1
 
 main()
 
-print(f"You want a dog that is {adj_list}")
+# print(f"You want a dog that is {adj_list}")
 
-# for a in adj_list:
-#     print(f"You want a dog that is {a}")
+for a in adj_list:
+    print(f"You want a dog that is {a}")
 
-print(split)
+print(df3)
 
     
 
